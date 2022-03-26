@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+/*
+Iterative implementation of the bubblesort algorithm.
+The temporal complexity of the method is O(n²)
+*/
 func bubbleSort(arr []int) []int {
 
 	for i := 0; i < len(arr)-1; i++ {

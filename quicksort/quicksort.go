@@ -11,6 +11,20 @@ func main() {
 	fmt.Printf("sorted %v, wanted %v", arr, wanted)
 }
 
+/*
+Recursive implementation of QuickSort algorithm.
+QuickSort makes use of a Pivot element, which is the first element of the array sent by parameter in this implementation.
+All the rest of elements are ordered at the sides of the Pivot, those smaller than the pivot go to the left, otherwise to the right of the pivot.
+This process is done recursively until all the sub-arrays are ordered.
+Temporal complexity: O(n^(log2 2)) = O(n)
+a=2
+b=2
+k=0
+O(n^(logb a))
+
+a > b^k
+2 > 1
+*/
 func QuickSort(arr []int, start int, end int) {
 
 	if start < end {
