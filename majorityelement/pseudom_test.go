@@ -19,6 +19,8 @@ func Test_majoritaryElement(t *testing.T) {
 		{"2", args{arr: []int{1, 1, 2, 3, 3, 3, 3}, elem: 3}, true},
 		{"3", args{arr: []int{1, 1, 2, 2, 3, 3}, elem: 3}, false},
 		{"4", args{arr: []int{7, 4, 3, 2, 1, 7, 7, 4, 7, 7, 7}, elem: 7}, true},
+		{"5", args{arr: []int{1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2}, elem: 2}, true},
+		{"6 - No elements in array", args{arr: []int{}, elem: 0}, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

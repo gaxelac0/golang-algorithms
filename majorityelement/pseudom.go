@@ -23,7 +23,11 @@ func pseudoM(arr []int) (hasCandidate bool, lenArr int, qttyCandidate int, candi
 
 	n := len(arr)
 
-	if n > 2 {
+	if n == 1 {
+		return true, 1, 1, arr[0]
+	} else if n == 2 && arr[0] == arr[1] {
+		return true, 2, 2, arr[0]
+	} else if n > 2 {
 		mid := (n - 1) / 2
 
 		hasXI, _, cxI, xI := pseudoM(arr[0 : mid+1])
@@ -50,7 +54,7 @@ func pseudoM(arr []int) (hasCandidate bool, lenArr int, qttyCandidate int, candi
 				// no son el mismo elemento pero aparecen la misma cantidad de veces en los dos subvectores
 			} else if cxD == cxI { // [1, 1] == [2,2]
 				return false, n, 0, 0
-			} else if cxI >= (n/2)+1 /*& cxD < n-cxI*/ {
+			} else if cxI >= (n/2)+1 {
 				return hasXI, n, cxI, xI
 			} else {
 				return hasXD, n, cxD, xD
@@ -63,10 +67,6 @@ func pseudoM(arr []int) (hasCandidate bool, lenArr int, qttyCandidate int, candi
 			return false, n, 0, 0
 		}
 
-	} else if n == 2 && arr[0] == arr[1] {
-		return true, 2, 2, arr[0]
-	} else if n == 1 {
-		return true, 1, 1, arr[0]
 	} else {
 		return false, n, 0, 0
 	}
@@ -91,8 +91,8 @@ func majoritaryElement(arr []int, elem int) bool {
 }
 
 func main() {
-	arr := []int{6, 6, 1, 1, 6}
+	arr := []int{1, 1, 2, 3, 3, 3, 3}
 
-	b := majoritaryElement(arr, 6)
+	b := majoritaryElement(arr, 3)
 	fmt.Printf("Mayoritario: %v\n", b)
 }
