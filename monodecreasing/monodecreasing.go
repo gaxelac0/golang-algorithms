@@ -30,7 +30,16 @@ func findRoot(f a_function, start int, end int) int {
 /**
 Funcion that finds the minor element in the x axis, using exponents of two.
 In which value, the function already became zero in the y axis.
-Temporal Cost: O(1)
+
+Returns a base two exponent.
+That number (e) is used to calculate a range of numbers in which the position of the number x may be in the array.
+
+x is contained in: {arr[e-1:e]}
+x C {arr[e-1 : e]}
+
+The temporal cost is logarithmic because this algorithm is not using a linear expresion to look for the index.
+Instead is using s base two exponents to delimit the range.
+Temporal Cost: O(log n)
 **/
 func findExp(f a_function) int {
 
@@ -39,7 +48,7 @@ func findExp(f a_function) int {
 		idx = int(math.Pow(2, float64(i))) // 2^i
 	}
 
-	return i
+	return i - 1
 }
 
 func main() {
@@ -47,8 +56,8 @@ func main() {
 	f := mock3
 	e := findExp(f)
 
-	start := int(math.Pow(2, float64(e-2)))
-	end := int(math.Pow(2, float64(e-1)))
+	start := int(math.Pow(2, float64(e-1)))
+	end := int(math.Pow(2, float64(e)))
 
 	fmt.Printf("Sarching between %v and %v\n", start, end)
 
