@@ -48,7 +48,7 @@ func pseudoM(arr []int) (hasCandidate bool, lenArr int, qttyCandidate int, candi
 		if hasXI && hasXD {
 
 			// son el mismo elemento en los dos subarrays
-			if xI == xD { // [1, 1] == [1,1]
+			if xI == xD { // [1, 1] == [1,1] or [1] == [1] or [1] == [1, 1]
 				return true, n, cxI + cxD, xI
 
 				// no son el mismo elemento pero aparecen la misma cantidad de veces en los dos subvectores
@@ -77,7 +77,7 @@ Implementation of majoritary element.
 A majoritary element is an element that appears at least n/2 + 1 times in the vector.
 Temporal Cost: O(n)
 **/
-func majoritaryElement(arr []int, elem int) bool {
+func pseudoMMajorityElement(arr []int, elem int) bool {
 
 	cant := 0
 	hasX, n, _, x := pseudoM(arr) // O(n)
@@ -91,8 +91,37 @@ func majoritaryElement(arr []int, elem int) bool {
 }
 
 func main() {
-	arr := []int{1, 1, 2, 3, 3, 3, 3}
+	arr := []int{1, 1, 2, 2, 305, 305, 305, 305, 305}
 
-	b := majoritaryElement(arr, 3)
-	fmt.Printf("Mayoritario: %v\n", b)
+	b := pseudoMMajorityElement(arr, 305)
+	fmt.Printf("pseudoM - Mayoritario: %v\n", b)
+
+	c := linearMajorityElement(arr, 305)
+	fmt.Printf("linear - Mayoritario: %v\n", c)
+}
+
+// Precond. Array ordenado con números positivos mayores que 0.
+// Costo Temporal: O(n²)
+// pseudoM tries to improve that temporal cost, so it's O(n)
+func linearMajorityElement(arr []int, elem int) bool {
+
+	n := len(arr)
+	var majoritaryCant int = -1
+	var majoritary int
+	for k := 0; k < n; k++ {
+
+		cantK := 0
+		for i := 0; i < n; i++ {
+			if arr[k] == arr[i] {
+				cantK++
+			}
+		}
+
+		if cantK > majoritaryCant {
+			majoritary = arr[k]
+			majoritaryCant = cantK
+		}
+	}
+
+	return majoritary == elem && (majoritaryCant >= (n/2)+1)
 }

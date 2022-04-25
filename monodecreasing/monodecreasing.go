@@ -28,6 +28,7 @@ func findRoot(f a_function, start int, end int) int {
 }
 
 /**
+"Exponential Search" / "Busqueda Exponencial"
 Funcion that finds the minor element in the x axis, using exponents of two.
 In which value, the function already became zero in the y axis.
 
@@ -41,7 +42,7 @@ The temporal cost is logarithmic because this algorithm is not using a linear ex
 Instead is using s base two exponents to delimit the range.
 Temporal Cost: O(log n)
 **/
-func findExp(f a_function) int {
+func exponentialSearch(f a_function) int {
 
 	i := 0
 	for idx := 0; f(idx) >= 0; i++ {
@@ -53,8 +54,8 @@ func findExp(f a_function) int {
 
 func main() {
 
-	f := mock3
-	e := findExp(f)
+	f := mock
+	e := exponentialSearch(f)
 
 	start := int(math.Pow(2, float64(e-1)))
 	end := int(math.Pow(2, float64(e)))

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_majoritaryElement(t *testing.T) {
+func Test_majorityElement(t *testing.T) {
 	type args struct {
 		arr  []int
 		elem int
@@ -25,7 +25,7 @@ func Test_majoritaryElement(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			fmt.Printf("\nCase %v\n", tt.name)
-			if got := majoritaryElement(tt.args.arr, tt.args.elem); got != tt.want {
+			if got := pseudoMMajorityElement(tt.args.arr, tt.args.elem); got != tt.want {
 				t.Errorf("majoritaryElement() = %v, want %v", got, tt.want)
 			}
 		})
