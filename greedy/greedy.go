@@ -21,7 +21,7 @@ Conditions:
  - Give back the minimum quantity of coins possible.
  - Choose always the maximum denomination of coinType posible.
 
- Temporal Cost:
+ Temporal Cost: O(n) in which n is the coinType ? TODO check this.
 **/
 func coinChangeProblem(vuelto float64, coinType []float64) []int {
 
@@ -39,7 +39,7 @@ func coinChangeProblem(vuelto float64, coinType []float64) []int {
 }
 
 func main() {
-	var change float64 = 15.5
+	var change float64 = 16
 	var coinType = []float64{10, 5, 2, 1, 0.5} // order it if needed.
 	r := coinChangeProblem(change, coinType)
 	fmt.Printf("Change to return: %v\n", change)
