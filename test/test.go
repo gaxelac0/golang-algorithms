@@ -1,8 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
+
+	// conn := 0
+	// for i := 999999999; i > 0; i-- {
+	// 	conn = conn + i
+	// }
+
+	// fmt.Printf("%v", conn)
+
+	slarkHunting()
+}
+
+func printMatrix() {
 
 	var m [3][4]int
 
