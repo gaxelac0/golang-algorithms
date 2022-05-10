@@ -11,7 +11,7 @@ It uses binary search algorithm in the background for a O(log n) temporal cost.
 Filing = Radicando
 **/
 func integerSquareRoot(start int, end int, filing int) int {
-	half := (end + start) / 2
+	half := (end + start - 1) / 2
 	sqrHalf := int(math.Pow(float64(half), 2))
 	sqrHalfPlusOne := int(math.Pow(float64(half+1), 2))
 
@@ -19,19 +19,23 @@ func integerSquareRoot(start int, end int, filing int) int {
 
 	if start > end {
 		return -1
-	} else if filing == 1 {
-		return 1
+	} else if filing == 0 || filing == 1 {
+		return filing
 	} else if sqrHalf <= filing && sqrHalfPlusOne > filing {
 		return half
 	} else if half > filing {
-		return integerSquareRoot(start, half, filing)
-	} else {
 		return integerSquareRoot(half+1, end, filing)
+	} else {
+		return integerSquareRoot(start, half, filing)
 	}
 }
 
-func main() {
+func sqrt(filing int) int {
+	return integerSquareRoot(1, filing, filing)
+}
 
-	raiz := integerSquareRoot(1, 4, 4)
-	fmt.Printf("raiz cuadrada entera de 16: %v", raiz)
+func main() {
+	radicando := 4
+	raiz := sqrt(radicando)
+	fmt.Printf("raiz cuadrada entera de %v: %v", radicando, raiz)
 }

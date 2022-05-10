@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 /*
 Recursive implementation of MergeSort algorithm.
 MergeSort splits the array in half recursively until the atomic case (one element), then merge in the correct order
@@ -16,14 +14,18 @@ O(n^k log n)
 a = b^k
 2 = 2
 */
-func MergeSort(arr []int, start int, end int) {
+func rMergeSort(arr []int, start int, end int) {
 
 	if start < end {
 		mid := (start + end) / 2 // constant
-		MergeSort(arr, start, mid)
-		MergeSort(arr, mid+1, end)
+		rMergeSort(arr, start, mid)
+		rMergeSort(arr, mid+1, end)
 		Merge(arr, start, end) // O(n)
 	}
+}
+
+func MergeSort(arr []int, start int, end int) {
+	rMergeSort(arr, start, end)
 }
 
 // Temporal Complexity: O(n)
@@ -48,14 +50,4 @@ func Merge(arr []int, start, end int) {
 	for k := 0; k <= end-start; k++ {
 		arr[start+k] = w[k]
 	}
-}
-
-func main() {
-
-	wanted := []int{1, 2, 4, 7, 7, 8, 8, 11, 17, 24}
-
-	arr := []int{7, 4, 11, 24, 17, 8, 1, 2, 7, 8}
-	MergeSort(arr, 0, 9)
-
-	fmt.Printf("sorted %v, wanted %v", arr, wanted)
 }
