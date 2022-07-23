@@ -6,14 +6,14 @@ type Sudoku struct {
 	matrix [][]int
 }
 
-func main() {
-	sudoku := generateSudoku()
-	bSolution := sudoku.solve()
-	fmt.Printf("Tiene solución?: %v\n\n", bSolution)
-	if bSolution {
-		printMatrix(sudoku.matrix)
-	}
-}
+// func main() {
+// 	sudoku := generateSudoku()
+// 	bSolution := sudoku.solve()
+// 	fmt.Printf("Tiene solución?: %v\n\n", bSolution)
+// 	if bSolution {
+// 		printMatrix(sudoku.matrix)
+// 	}
+// }
 
 func (s Sudoku) solve() bool {
 
