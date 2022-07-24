@@ -4,15 +4,15 @@ type Matrix struct {
 	m [][]int
 }
 
-func main() {
+// func main() {
 
-	n := 8
-	mtx := getMatrix(n)
+// 	n := 8
+// 	mtx := getMatrix(n)
 
-	queensProblem(mtx, 0)
-	// mtx.displayMatrix()
+// 	queensProblem(mtx, 0)
+// 	// mtx.displayMatrix()
 
-}
+// }
 
 func queensProblem(mtx Matrix, stage int) {
 
