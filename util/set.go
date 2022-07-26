@@ -1,5 +1,7 @@
 package util
 
+import "fmt"
+
 type CustomSet struct {
 	Container map[int]struct{}
 }
@@ -35,11 +37,13 @@ func (cs *CustomSet) Elegir() int {
 	return -1
 }
 
-func (cs *CustomSet) String() {
+func (cs *CustomSet) String() string {
 
+	var str string = ""
 	for k, _ := range cs.Container {
-		print(k)
+		str += fmt.Sprintf("%v", k)
 	}
+	return str
 }
 
 func (cs *CustomSet) Copiar() *CustomSet {

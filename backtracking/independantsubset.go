@@ -1,18 +1,16 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gaxelac0/golang-algorithms/util"
 )
 
 func main() {
 
-	// set1 := util.MakeSet()
+	visitados := util.MakeSet()
 
-	// set2 := util.MakeSet()
-	// set2.Add(2)
-
-	// print(set1.Vacio())
-	// print(set2.Vacio())
+	excluidos := util.MakeSet()
 
 	graph := util.MakeGraph(10)
 	graph.AddBoth(0, 1)
@@ -36,10 +34,50 @@ func main() {
 	graph.AddBoth(7, 8)
 	graph.AddBoth(7, 9)
 
+	fmt.Printf("Visitados := %s", backtracking(graph, 0, graph.Vertices(), visitados, excluidos).String())
+
 }
 
-func backtracking(g *util.CustomGraph, stage int) *util.CustomSet {
-	return nil
+func backtracking(g *util.CustomGraph, stage int, vertices, visitados, excluidos *util.CustomSet) *util.CustomSet {
+
+	if stage == g.Container.Order() {
+		fmt.Println("reached maximum stage: " + visitados.String())
+		return visitados
+	}
+
+	for !vertices.Vacio() {
+
+		//decision
+		v := vertices.Elegir()
+		vertices.Sacar(v)
+
+		if visitados.Pertenece(v) || excluidos.Pertenece(v) {
+			continue
+		}
+		visitados.Add(v)
+
+		lastExcluded := util.MakeSet()
+		vecinos := g.Neighbors(v)
+		for !vecinos.Vacio() {
+			aux := vecinos.Elegir()
+			vecinos.Sacar(aux)
+			excluidos.Add(aux)
+			lastExcluded.Add(aux)
+		}
+
+		//backtracking
+		backtracking(g, stage+1, vertices, visitados, excluidos)
+
+		// undo decision
+		for !lastExcluded.Vacio() {
+			x := lastExcluded.Elegir()
+			lastExcluded.Sacar(x)
+			excluidos.Sacar(x)
+		}
+		visitados.Sacar(v)
+	}
+
+	return visitados
 }
 
 func menos(cs1, cs2 *util.CustomSet) *util.CustomSet {
